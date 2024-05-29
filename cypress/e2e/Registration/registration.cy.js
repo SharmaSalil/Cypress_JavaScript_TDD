@@ -14,12 +14,24 @@ describe("Login test cases for valid data", () => {
         pageObjectManager.getGenericFunctions().loadPage(pageObjectManager.getUrl().getLoginUrl());
     });
 
-    it("To verify that the Registeration is able to login with valid data", () => {
+    it("To check if users can register successfully with correct information", () => {
         const pageObjectManager = new PageObjectManager();
         pageObjectManager.getLogin().register_BTN_click();
         pageObjectManager.getRegistration().fillDataForRegistration()
-        pageObjectManager.getRegistration().login_BTN_click()
-        pageObjectManager.getLogin().getLoginDataFromRegistration()
+        pageObjectManager.getRegistration()
+            .login_BTN_getElement().should("be.visible")
+    })
+
+    it.only("To verify that when a user clicks the 'Register' button without filling in the required fields, an error message should appear.", () => {
+        const pageObjectManager = new PageObjectManager();
+        pageObjectManager.getLogin().register_BTN_click();
+        pageObjectManager.getRegistration().register_BTN_click()
+        pageObjectManager.getRegistration().errorMessage_TXT_getText()
+            .should("contain", "First Name is required")
+            .and("contain", "Email is required")
+            .and("contain", "Phone Number is required")
+            .and("contain", "Password is required")
+            .and("contain", "Confirm Password is required")
     })
 
 })

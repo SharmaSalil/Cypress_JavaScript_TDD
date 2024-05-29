@@ -1,5 +1,9 @@
 export default class GenericFuntions {
 
+    get(element) {
+        return cy.get(element)
+    }
+
     get_clear = (element) => {
         cy.get(element).clear()
     }
@@ -20,6 +24,10 @@ export default class GenericFuntions {
         cy.get(element).select(value)
     }
 
+    get_invoke = (element, value) => {
+        return cy.get(element).invoke(value)
+    }
+
     get_attributeMatch_click = (element, attribute, value) => {
         cy.get(element).each(($radio) => {
             const attributeValue = $radio.attr(attribute);
@@ -33,8 +41,8 @@ export default class GenericFuntions {
         return cy.url()
     }
 
-    loadPage = (value) => {
-        cy.visit(value)
+    loadPage = (element) => {
+        cy.visit(element)
     }
 
 }

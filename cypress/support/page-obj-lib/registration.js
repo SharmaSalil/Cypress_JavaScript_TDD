@@ -10,13 +10,14 @@ export default class Registration {
     get lastName_TXTFLD() { return { locator: "#lastName" } }
     get email_TXTFLD() { return { locator: "#userEmail" } }
     get mobileNumber_TXTFLD() { return { locator: "#userMobile" } }
-    get occupation_DRPDWN() { return { locator: "select[formcontrolname='occupation']", values: ["1: Doctor", "2: Student", "3: Engineer", "4: Scientist"] } } 
+    get occupation_DRPDWN() { return { locator: "select[formcontrolname='occupation']", values: ["1: Doctor", "2: Student", "3: Engineer", "4: Scientist"] } }
     get gender_RDOBTN() { return { locator: "input[type='radio']", attribute: "value", values: ["Male", "Female"] } }
     get password_TXTFLD() { return { locator: "#userPassword" } }
     get confirmPassword_TXTFLD() { return { locator: "#confirmPassword" } }
     get age_CHKBTN() { return { locator: "input[type='checkbox']" } }
     get register_BTN() { return { locator: "#login" } }
     get login_BTN() { return { loator: ".btn.btn-primary" } }
+    get errorMessage_TXT() { return { locator: ".invalid-feedback div" } }
 
 
     createDataForRegistration = () => {
@@ -137,8 +138,18 @@ export default class Registration {
         genericFunctions.get_attributeMatch_click(this.gender_RDOBTN.locator, this.gender_RDOBTN.attribute, value)
     }
 
-    login_BTN_click(){
+    login_BTN_click() {
         const genericFunctions = new GenericFunctions()
         genericFunctions.get_click(this.login_BTN.loator)
+    }
+
+    login_BTN_getElement() {
+        const genericFunctions = new GenericFunctions()
+        return genericFunctions.get(this.login_BTN.loator)
+    }
+
+    errorMessage_TXT_getText(){
+        const genericFunctions = new GenericFunctions()
+        return genericFunctions.get_invoke(this.errorMessage_TXT.locator, "text")
     }
 }

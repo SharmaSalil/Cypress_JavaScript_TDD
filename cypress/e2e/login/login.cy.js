@@ -12,12 +12,10 @@ beforeEach(() => {
 
 describe("Login test cases for valid data", () => {
 
-    it("To verify that the user is able to login with valid data", () => {
+    it("To verify that the user can log in successfully using valid data.", () => {
         const pageObjectManager = new PageObjectManager();
-
-        cy.softAssert(() => {
-            pageObjectManager.getGenericFunctions().return_url().should('eq', pageObjectManager.getUrl().getHomePageUrl());
-        })
+        pageObjectManager.getGenericFunctions().return_url()
+            .should('eq', pageObjectManager.getUrl().getHomePageUrl());
     })
 
 })
