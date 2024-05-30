@@ -11,8 +11,9 @@ export default class Login {
     get password_TXTFLD() { return { locator: "#userPassword" } }
     get login_BTN() { return { locator: "#login" } }
     get register_BTN() { return { locator: "section .btn1" } }
+    get globalError_TXT() { return { locator: "#toast-container .toast-error" } }
 
-    goToLoginPage(){
+    goToLoginPage() {
         const genericFuntions = new GenericFuntions();
         const getUrl = new Url();
         genericFuntions.loadPage(getUrl.getLoginUrl());
@@ -64,6 +65,18 @@ export default class Login {
             writeData.writeData(fixturePath.validLoginData.path, { email: data.email, password: data.password })
         })
     }
+
+    globalError_TXT_get_shouldWithVisibleAndExist(){
+        const genericFuntions = new GenericFuntions();
+        genericFuntions.get_shouldWithVisibleAndExist(this.globalError_TXT.locator)
+    }
+
+    globalError_TXT_get_invoke(){
+        const genericFuntions = new GenericFuntions();
+        this.globalError_TXT_get_shouldWithVisibleAndExist()
+        return genericFuntions.get_invoke(this.globalError_TXT.locator, "text")
+    }
+
 }
 
 
