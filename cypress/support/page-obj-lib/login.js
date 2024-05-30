@@ -2,6 +2,8 @@ import GenericFuntions from '../genericFunctions/GenericFunctions'
 import FixturePath from '../fixtureReader/FixturePath'
 import ReadData from '../fixtureReader/ReadData'
 import WriteData from '../fixtureReader/WriteData'
+import Url from '../urlHandler/Url'
+
 
 export default class Login {
 
@@ -10,6 +12,11 @@ export default class Login {
     get login_BTN() { return { locator: "#login" } }
     get register_BTN() { return { locator: "section .btn1" } }
 
+    goToLoginPage(){
+        const genericFuntions = new GenericFuntions();
+        const getUrl = new Url();
+        genericFuntions.loadPage(getUrl.getLoginUrl());
+    }
 
     email_TXTFLD_clear = () => {
         const genericFuntions = new GenericFuntions();
@@ -38,8 +45,8 @@ export default class Login {
         genericFuntions.get_click(this.login_BTN.locator)
     }
 
-    login = (username, password) => {
-        this.email_TXTFLD_type(username)
+    login = (email, password) => {
+        this.email_TXTFLD_type(email)
         this.password_TXTFLD_type(password)
         this.login_BTN_click()
     }
@@ -49,7 +56,7 @@ export default class Login {
         genericFuntions.get_click(this.register_BTN.locator)
     }
 
-    getLoginDataFromRegistration = () => {
+    getLoginData = () => {
         const writeData = new WriteData()
         const readData = new ReadData()
         const fixturePath = new FixturePath()

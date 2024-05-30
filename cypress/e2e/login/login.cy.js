@@ -6,12 +6,12 @@ describe("Login test cases for valid data", () => {
 
     before(() => {
         const pageObjectManager = new PageObjectManager();
-        pageObjectManager.getLogin().getLoginDataFromRegistration()
+        pageObjectManager.getLogin().getLoginData()
     })
 
     beforeEach(() => {
         const pageObjectManager = new PageObjectManager();
-        pageObjectManager.getGenericFunctions().loadPage(pageObjectManager.getUrl().getLoginUrl());
+        pageObjectManager.getLogin().goToLoginPage()
         pageObjectManager.getReadData().readDataUsingReadFile(pageObjectManager.getFixturePath().validLoginData.path).then(data => {
             pageObjectManager.getLogin().login(data.email, data.password)
         })

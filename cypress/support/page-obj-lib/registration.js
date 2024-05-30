@@ -3,6 +3,7 @@ import FixturePath from '../fixtureReader/FixturePath'
 import WriteData from '../fixtureReader/WriteData'
 import ReadData from '../fixtureReader/ReadData'
 import GenericFunctions from '../genericFunctions/GenericFunctions'
+import Login from '../page-obj-lib/Login'
 
 export default class Registration {
 
@@ -162,5 +163,11 @@ export default class Registration {
     ageValidationMessage_CHKBX_get_invoke(){
         const genericFunctions = new GenericFunctions()
         return genericFunctions.get_invoke(this.ageValidationMessage_CHKBX.locator, "text")
+    }
+
+    goToRegisterationPage(){
+        const login = new Login()
+        login.goToLoginPage()
+        login.register_BTN_click()
     }
 }

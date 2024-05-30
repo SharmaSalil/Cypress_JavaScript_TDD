@@ -11,12 +11,11 @@ describe("Login test cases for valid data", () => {
 
     beforeEach(() => {
         const pageObjectManager = new PageObjectManager();
-        pageObjectManager.getGenericFunctions().loadPage(pageObjectManager.getUrl().getLoginUrl());
+        pageObjectManager.getRegistration().goToRegisterationPage()
     });
 
     it("To check if users can register successfully with correct information", () => {
         const pageObjectManager = new PageObjectManager();
-        pageObjectManager.getLogin().register_BTN_click();
         pageObjectManager.getRegistration().fillDataForRegistration()
         pageObjectManager.getRegistration()
             .login_BTN_getElement().should("be.visible")
@@ -24,7 +23,6 @@ describe("Login test cases for valid data", () => {
 
     it("To verify that when a user clicks the 'Register' button without filling in the required fields, an error message should appear.", () => {
         const pageObjectManager = new PageObjectManager();
-        pageObjectManager.getLogin().register_BTN_click();
         pageObjectManager.getRegistration().register_BTN_click()
         pageObjectManager.getRegistration().errorMessage_TXT_get_shouldWithVisibleAndExist()
         pageObjectManager.getRegistration().errorMessage_TXT_getText().then(errorMessages => {
