@@ -22,7 +22,7 @@ describe("Login test cases for valid data", () => {
             .login_BTN_getElement().should("be.visible")
     })
 
-    it.only("To verify that when a user clicks the 'Register' button without filling in the required fields, an error message should appear.", () => {
+    it("To verify that when a user clicks the 'Register' button without filling in the required fields, an error message should appear.", () => {
         const pageObjectManager = new PageObjectManager();
         pageObjectManager.getLogin().register_BTN_click();
         pageObjectManager.getRegistration().register_BTN_click()
