@@ -51,8 +51,8 @@ export default class GenericFuntions {
         return cy.url()
     }
 
-    loadPage = (element) => {
-        cy.visit(element)
+    loadPage = (url) => {
+        cy.visit(url)
     }
 
 }

@@ -28,8 +28,8 @@ describe("Login test cases for valid data", () => {
         pageObjectManager.getRegistration().register_BTN_click()
         pageObjectManager.getRegistration().errorMessage_TXT_get_visibleAndExist()
         pageObjectManager.getRegistration().errorMessage_TXT_getText().then(errorMessages => {
-
             pageObjectManager.getRegistration().ageValidation_CHKBX_get_checkTextInBody().then(ageErrVisible => {
+                
                 cy.softAssert(() => {
                     expect(errorMessages).to.be.contain("First Name is required")
                     expect(errorMessages).to.be.contain("Email is required")
