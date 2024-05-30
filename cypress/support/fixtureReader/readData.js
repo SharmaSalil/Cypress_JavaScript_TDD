@@ -1,11 +1,12 @@
 export default class ReadData{
 
-    readDataUsingFixture = (value) => {
-        return cy.fixture(value)
+    readDataUsingFixture = (path) => {
+        path = String(path).replace("./cypress/fixtures", ".")
+        return cy.fixture(path)
     }
 
-    readDataUsingReadFile = (value) => {
-        return cy.readFile(value)
+    readDataUsingReadFile = (path) => {
+        return cy.readFile(path)
     }
 
 }
