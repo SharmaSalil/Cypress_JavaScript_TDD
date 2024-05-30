@@ -28,6 +28,6 @@ export default class Utility {
         return Math.floor(Math.random() * (value + 1));
     }
 
-    //ok
+    
 }
 
