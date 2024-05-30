@@ -5,6 +5,8 @@ module.exports = defineConfig({
 
   pageLoadTimeout: 30 * 1000,
   defaultCommandTimeout: 30 * 1000,
+  experimentalMemoryManagement: true,
+  chromeWebSecurity: false,
   reporter: 'cypress-mochawesome-reporter',
 
   video: false,
@@ -12,9 +14,9 @@ module.exports = defineConfig({
   reporterOptions: {
     charts: true,
     reportPageTitle: 'Cypress Inline Reporter',
-    screenshotOnRunFailure:true,
-    screenshotsFolder:"./cypress/reports/screenshots/",
-    embeddedScreenshots: true, 
+    screenshotOnRunFailure: true,
+    screenshotsFolder: "./cypress/reports/screenshots/",
+    embeddedScreenshots: true,
     inlineAssets: true,
   },
   e2e: {
