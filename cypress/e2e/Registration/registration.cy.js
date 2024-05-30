@@ -29,7 +29,7 @@ describe("Login test cases for valid data", () => {
         pageObjectManager.getRegistration().errorMessage_TXT_get_shouldWithVisibleAndExist()
         pageObjectManager.getRegistration().errorMessage_TXT_getText().then(errorMessages => {
             pageObjectManager.getRegistration().ageValidationMessage_CHKBX_get_invoke().then(errorMessage => {
-                
+
                 cy.softAssert(() => {
                     expect(errorMessages).to.be.contain(pageObjectManager.getRegistrationErrorMessages().FIRSTNAME)
                     expect(errorMessages).to.be.contain(pageObjectManager.getRegistrationErrorMessages().EMAIL)
