@@ -18,7 +18,7 @@ export default class Registration {
     get register_BTN() { return { locator: "#login" } }
     get login_BTN() { return { loator: ".btn.btn-primary" } }
     get errorMessage_TXT() { return { locator: ".invalid-feedback div" } }
-    get ageValidation_CHKBX() { return { text: "*Please check above checkbox" } }
+    get ageValidationMessage_CHKBX() { return { locator: ".row > [style*='margin-top:'] > div" } }
 
 
     createDataForRegistration = () => {
@@ -159,8 +159,8 @@ export default class Registration {
         genericFunctions.get_visibleAndExist(this.errorMessage_TXT.locator)
     }
 
-    ageValidation_CHKBX_get_checkTextInBody(){
+    ageValidationMessage_CHKBX_get_invoke(){
         const genericFunctions = new GenericFunctions()
-        return genericFunctions.get_checkTextInBody(this.ageValidation_CHKBX.text)
+        return genericFunctions.get_invoke(this.ageValidationMessage_CHKBX.locator, "text")
     }
 }

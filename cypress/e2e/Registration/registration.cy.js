@@ -28,15 +28,15 @@ describe("Login test cases for valid data", () => {
         pageObjectManager.getRegistration().register_BTN_click()
         pageObjectManager.getRegistration().errorMessage_TXT_get_visibleAndExist()
         pageObjectManager.getRegistration().errorMessage_TXT_getText().then(errorMessages => {
-            pageObjectManager.getRegistration().ageValidation_CHKBX_get_checkTextInBody().then(ageErrVisible => {
+            pageObjectManager.getRegistration().ageValidationMessage_CHKBX_get_invoke().then(errorMessage => {
                 
                 cy.softAssert(() => {
-                    expect(errorMessages).to.be.contain("First Name is required")
-                    expect(errorMessages).to.be.contain("Email is required")
-                    expect(errorMessages).to.be.contain("Phone Number is required")
-                    expect(errorMessages).to.be.contain("Password is required")
-                    expect(errorMessages).to.be.contain("Confirm Password is required")
-                    expect(ageErrVisible).to.be.true
+                    expect(errorMessages).to.be.contain(pageObjectManager.getRegistrationErrorMessages().FIRSTNAME)
+                    expect(errorMessages).to.be.contain(pageObjectManager.getRegistrationErrorMessages().EMAIL)
+                    expect(errorMessages).to.be.contain(pageObjectManager.getRegistrationErrorMessages().PHONENUMBER)
+                    expect(errorMessages).to.be.contain(pageObjectManager.getRegistrationErrorMessages().PASSWORD)
+                    expect(errorMessages).to.be.contain(pageObjectManager.getRegistrationErrorMessages().CONFIRMPASSWORD)
+                    expect(errorMessage).to.be.contain(pageObjectManager.getRegistrationErrorMessages().AGECHKBX)
                 })
             })
         })
