@@ -1,6 +1,6 @@
 export default class WriteData {
 
-    writeDatatToFile = (path, data) => {
+    writeData = (path, data) => {
         cy.writeFile(path, data)
     }
 

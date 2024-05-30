@@ -14,10 +14,11 @@ export default class Registration {
     get gender_RDOBTN() { return { locator: "input[type='radio']", attribute: "value", values: ["Male", "Female"] } }
     get password_TXTFLD() { return { locator: "#userPassword" } }
     get confirmPassword_TXTFLD() { return { locator: "#confirmPassword" } }
-    get age_CHKBTN() { return { locator: "input[type='checkbox']" } }
+    get age_CHKBX() { return { locator: "input[type='checkbox']" } }
     get register_BTN() { return { locator: "#login" } }
     get login_BTN() { return { loator: ".btn.btn-primary" } }
     get errorMessage_TXT() { return { locator: ".invalid-feedback div" } }
+    get ageValidation_CHKBX() { return { text: "*Please check above checkbox" } }
 
 
     createDataForRegistration = () => {
@@ -32,13 +33,13 @@ export default class Registration {
         let gender = this.gender_RDOBTN.values[utility.getRandomNumber((this.gender_RDOBTN.values.length) - 1)].toString()
         let password = utility.generateNumber(8).toString() + utility.generateRandomWord(1).toString().toUpperCase() + utility.generateRandomWord(1).toString() + "!"
         let confirmPassword = password
-        writeData.writeDatatToFile(fixturePath.registrationData.path, { firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, occupation: occupation, gender: gender, password: password, confirmPassword: confirmPassword })
+        writeData.writeData(fixturePath.registrationData.path, { firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, occupation: occupation, gender: gender, password: password, confirmPassword: confirmPassword })
     }
 
     fillDataForRegistration = () => {
         const readData = new ReadData()
         const fixturePath = new FixturePath()
-        readData.readValidDataForLoginUsingReadFile(fixturePath.registrationData.path).then(data => {
+        readData.readDataUsingReadFile(fixturePath.registrationData.path).then(data => {
             this.firstName_TXTFLD_type(data.firstName)
             this.lastName_TXTFLD_type(data.lastName)
             this.email_TXTFLD_type(data.email)
@@ -47,7 +48,7 @@ export default class Registration {
             this.gender_RDOBTN_matchAndClick(data.gender)
             this.password_TXTFLD_type(data.password)
             this.confirmPassword_TXTFLD_type(data.confirmPassword)
-            this.age_CHKBTN_click()
+            this.age_CHKBX_click()
             this.register_BTN_click()
         })
     }
@@ -118,9 +119,9 @@ export default class Registration {
         genericFunctions.get_type(this.confirmPassword_TXTFLD.locator, value)
     }
 
-    age_CHKBTN_click() {
+    age_CHKBX_click() {
         const genericFunctions = new GenericFunctions()
-        genericFunctions.get_click(this.age_CHKBTN.locator)
+        genericFunctions.get_click(this.age_CHKBX.locator)
     }
 
     register_BTN_click() {
@@ -148,8 +149,18 @@ export default class Registration {
         return genericFunctions.get(this.login_BTN.loator)
     }
 
-    errorMessage_TXT_getText(){
+    errorMessage_TXT_getText() {
         const genericFunctions = new GenericFunctions()
         return genericFunctions.get_invoke(this.errorMessage_TXT.locator, "text")
+    }
+
+    errorMessage_TXT_get_visibleAndExist() {
+        const genericFunctions = new GenericFunctions()
+        genericFunctions.get_visibleAndExist(this.errorMessage_TXT.locator)
+    }
+
+    ageValidation_CHKBX_get_checkTextInBody(){
+        const genericFunctions = new GenericFunctions()
+        return genericFunctions.get_checkTextInBody(this.ageValidation_CHKBX.text)
     }
 }

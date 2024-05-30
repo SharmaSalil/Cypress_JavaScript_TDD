@@ -4,6 +4,16 @@ export default class GenericFuntions {
         return cy.get(element)
     }
 
+    get_checkTextInBody(value) {
+        return cy.get("body").then($body => {
+            if ($body.text().includes(value)) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+
     get_clear = (element) => {
         cy.get(element).clear()
     }
@@ -12,7 +22,7 @@ export default class GenericFuntions {
         cy.get(element).type(value)
     }
 
-    get_visibleAndExist = () => {
+    get_visibleAndExist = (element) => {
         cy.get(element).should("be.visible").and("exist")
     }
 

@@ -22,16 +22,24 @@ describe("Login test cases for valid data", () => {
             .login_BTN_getElement().should("be.visible")
     })
 
-    it("To verify that when a user clicks the 'Register' button without filling in the required fields, an error message should appear.", () => {
+    it.only("To verify that when a user clicks the 'Register' button without filling in the required fields, an error message should appear.", () => {
         const pageObjectManager = new PageObjectManager();
         pageObjectManager.getLogin().register_BTN_click();
         pageObjectManager.getRegistration().register_BTN_click()
-        pageObjectManager.getRegistration().errorMessage_TXT_getText()
-            .should("contain", "First Name is required")
-            .and("contain", "Email is required")
-            .and("contain", "Phone Number is required")
-            .and("contain", "Password is required")
-            .and("contain", "Confirm Password is required")
+        pageObjectManager.getRegistration().errorMessage_TXT_get_visibleAndExist()
+        pageObjectManager.getRegistration().errorMessage_TXT_getText().then(errorMessages => {
+
+            pageObjectManager.getRegistration().ageValidation_CHKBX_get_checkTextInBody().then(ageErrVisible => {
+                cy.softAssert(() => {
+                    expect(errorMessages).to.be.contain("First Name is required")
+                    expect(errorMessages).to.be.contain("Email is required")
+                    expect(errorMessages).to.be.contain("Phone Number is required")
+                    expect(errorMessages).to.be.contain("Password is required")
+                    expect(errorMessages).to.be.contain("Confirm Password is required")
+                    expect(ageErrVisible).to.be.true
+                })
+            })
+        })
     })
 
 })

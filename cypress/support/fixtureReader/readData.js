@@ -1,10 +1,10 @@
 export default class ReadData{
 
-    readValidDataForLoginUsingFixture = (value) => {
+    readDataUsingFixture = (value) => {
         return cy.fixture(value)
     }
 
-    readValidDataForLoginUsingReadFile = (value) => {
+    readDataUsingReadFile = (value) => {
         return cy.readFile(value)
     }
 

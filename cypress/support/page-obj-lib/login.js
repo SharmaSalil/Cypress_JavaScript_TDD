@@ -53,8 +53,8 @@ export default class Login {
         const writeData = new WriteData()
         const readData = new ReadData()
         const fixturePath = new FixturePath()
-        readData.readValidDataForLoginUsingReadFile(fixturePath.registrationData.path).then(data => {
-            writeData.writeDatatToFile(fixturePath.validLoginData.path, { email: data.email, password: data.password })
+        readData.readDataUsingReadFile(fixturePath.registrationData.path).then(data => {
+            writeData.writeData(fixturePath.validLoginData.path, { email: data.email, password: data.password })
         })
     }
 }
