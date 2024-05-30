@@ -19,8 +19,7 @@ describe("Login Page Test Cases", () => {
         pageObjectManager.getReadData().readDataUsingReadFile(pageObjectManager.getFixturePath().validLoginData.path).then(data => {
             pageObjectManager.getLogin().login(data.email, data.password)
         })
-        pageObjectManager.getGenericFunctions().return_url()
-            .should('eq', pageObjectManager.getUrl().getHomePageUrl());
+        pageObjectManager.getGenericFunctions().return_url().should('eq', pageObjectManager.getUrl().getHomePageUrl());
     })
 
     it("To verify the visibility of error message(at bottom) to user attempting to log-in with invalid credential - globalErrInvalidData", () => {
@@ -32,6 +31,5 @@ describe("Login Page Test Cases", () => {
             pageObjectManager.getLogin().globalError_TXT_get_invoke().should("contain", "Incorrect email or password")
         })
     })
-
 
 })

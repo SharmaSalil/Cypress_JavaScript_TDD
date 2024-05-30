@@ -17,8 +17,7 @@ describe("Login test cases for valid data", () => {
     it("To check if users can register successfully with correct information", () => {
         const pageObjectManager = new PageObjectManager();
         pageObjectManager.getRegistration().fillDataForRegistration()
-        pageObjectManager.getRegistration()
-            .login_BTN_getElement().should("be.visible")
+        pageObjectManager.getRegistration().login_BTN_getElement().should("be.visible")
     })
 
     it("To verify that when a user clicks the 'Register' button without filling in the required fields, an error message should appear.", () => {
