@@ -1,15 +1,6 @@
 /// <reference types="cypress" />
 const { defineConfig } = require("cypress");
 
-const dotenv = require('dotenv');
-const path = require('path')
-
-const envFilePath = path.join(__dirname, `env/${process.env.ENV}.env`)
-
-console.log("envFilePath ::", envFilePath)
-
-dotenv.config({ path: envFilePath })
-
 module.exports = defineConfig({
 
   pageLoadTimeout: 30 * 1000,
