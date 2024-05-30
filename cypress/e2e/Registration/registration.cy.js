@@ -34,7 +34,7 @@ describe("Login test cases for valid data", () => {
                     expect(errorMessages).to.be.contain(pageObjectManager.getRegistrationErrorMessages().FIRSTNAME)
                     expect(errorMessages).to.be.contain(pageObjectManager.getRegistrationErrorMessages().EMAIL)
                     expect(errorMessages).to.be.contain(pageObjectManager.getRegistrationErrorMessages().PHONENUMBER)
-                    expect(errorMessages).to.be.contain(pageObjectManager.getRegistrationErrorMessages().PASSWORD+"1")
+                    expect(errorMessages).to.be.contain(pageObjectManager.getRegistrationErrorMessages().PASSWORD)
                     expect(errorMessages).to.be.contain(pageObjectManager.getRegistrationErrorMessages().CONFIRMPASSWORD)
                     expect(errorMessage).to.be.contain(pageObjectManager.getRegistrationErrorMessages().AGECHKBX)
                 })
