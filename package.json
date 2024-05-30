@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "clean:directories": "rm -rf cypress/screenshots && mkdir -p cypress/screenshots && rm -rf cypress/reports && mkdir -p cypress/reports",
+    "test-all": "npm run clean:directories && npx cypress run --e2e --headed"
   },
   "author": "",
   "license": "ISC",

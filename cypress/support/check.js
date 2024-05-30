@@ -1,1 +1,2 @@
-console.log(process.env.NAME)
+const projectPath = process.cwd();
+console.log('Project Path:', projectPath);
