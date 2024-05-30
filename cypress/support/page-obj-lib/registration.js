@@ -154,9 +154,9 @@ export default class Registration {
         return genericFunctions.get_invoke(this.errorMessage_TXT.locator, "text")
     }
 
-    errorMessage_TXT_get_visibleAndExist() {
+    errorMessage_TXT_get_shouldWithVisibleAndExist() {
         const genericFunctions = new GenericFunctions()
-        genericFunctions.get_visibleAndExist(this.errorMessage_TXT.locator)
+        genericFunctions.get_shouldWithVisibleAndExist(this.errorMessage_TXT.locator)
     }
 
     ageValidationMessage_CHKBX_get_invoke(){

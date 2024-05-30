@@ -4,7 +4,7 @@ import Url from '../urlHandler/Url'
 import ReadData from '../fixtureReader/ReadData'
 import Registration from '../page-obj-lib/Registration'
 import FixturePath from '../fixtureReader/FixturePath'
-import RegistrationErrorMessages from '../Enums/registration/registration';
+import RegistrationErrorMessages from '../enum/registration/registration';
 
 export default class PageObjectManager {
 
@@ -42,7 +42,7 @@ export default class PageObjectManager {
         return this.fixturePath;
     }
 
-    getRegistrationErrorMessages() {
+    getRegistrationErrorMessages = () => {
         return this.registrationErrorMessages;
     }
 }

@@ -26,7 +26,7 @@ describe("Login test cases for valid data", () => {
         const pageObjectManager = new PageObjectManager();
         pageObjectManager.getLogin().register_BTN_click();
         pageObjectManager.getRegistration().register_BTN_click()
-        pageObjectManager.getRegistration().errorMessage_TXT_get_visibleAndExist()
+        pageObjectManager.getRegistration().errorMessage_TXT_get_shouldWithVisibleAndExist()
         pageObjectManager.getRegistration().errorMessage_TXT_getText().then(errorMessages => {
             pageObjectManager.getRegistration().ageValidationMessage_CHKBX_get_invoke().then(errorMessage => {
                 

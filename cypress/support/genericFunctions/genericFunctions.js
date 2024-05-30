@@ -1,6 +1,6 @@
 export default class GenericFuntions {
 
-    get(element) {
+    get = (element) => {
         return cy.get(element)
     }
 
@@ -22,7 +22,7 @@ export default class GenericFuntions {
         cy.get(element).type(value)
     }
 
-    get_visibleAndExist = (element) => {
+    get_shouldWithVisibleAndExist = (element) => {
         cy.get(element).should("be.visible").and("exist")
     }
 

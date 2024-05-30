@@ -13,7 +13,7 @@ export default class Utility {
     generateNumber = (length) => {
         let phoneNumber = "";
         for (let i = 0; i < length; i++) {
-            phoneNumber += Math.floor(Math.random() * 10);
+            phoneNumber += Math.floor(Math.random() * length);
         }
         return phoneNumber;
     }
