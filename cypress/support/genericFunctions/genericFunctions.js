@@ -39,10 +39,10 @@ export default class GenericFuntions {
     }
 
     get_attributeMatch_click = (element, attribute, value) => {
-        cy.get(element).each(($radio) => {
-            const attributeValue = $radio.attr(attribute);
+        cy.get(element).each(($element) => {
+            const attributeValue = $element.attr(attribute);
             if (attributeValue == value) {
-                cy.wrap($radio).click({ force: true });
+                cy.wrap($element).click({ force: true });
             }
         });
     }
