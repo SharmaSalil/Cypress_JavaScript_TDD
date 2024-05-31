@@ -4,7 +4,6 @@ import ReadData from '../fixtureReader/ReadData'
 import WriteData from '../fixtureReader/WriteData'
 import Url from '../urlHandler/Url'
 
-
 export default class Login {
 
     get email_TXTFLD() { return { locator: "#userEmail" } }
@@ -78,16 +77,15 @@ export default class Login {
         return genericFuntions.get_invoke(this.globalError_TXT.locator, "text")
     }
 
-    // invalidFeedback_TXT_get_shouldWithVisibleAndExist() {
-    //     const genericFuntions = new GenericFuntions();
-    //     genericFuntions.get_shouldWithVisibleAndExist(this.invalidFeedback_TXT.locator)
-    // }
+    invalidFeedback_TXT_get_shouldWithVisibleAndExist() {
+        const genericFuntions = new GenericFuntions();
+        genericFuntions.get_shouldWithVisibleAndExist(this.invalidFeedback_TXT.locator)
+    }
 
     invalidFeedback_TXT_get_invoke() {
         const genericFuntions = new GenericFuntions();
-        // this.invalidFeedback_TXT_get_shouldWithVisibleAndExist()
-        // return genericFuntions.get_invoke(this.invalidFeedback_TXT.locator, "text")
-        return cy.get(this.invalidFeedback_TXT.locator).invoke("text")
+        this.invalidFeedback_TXT_get_shouldWithVisibleAndExist()
+        return genericFuntions.get_invoke(this.invalidFeedback_TXT.locator, "text")
     }
 
 }
