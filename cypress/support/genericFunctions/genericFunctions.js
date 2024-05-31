@@ -6,11 +6,8 @@ export default class GenericFuntions {
 
     get_checkTextInBody(value) {
         return cy.get("body").then($body => {
-            if ($body.text().includes(value)) {
-                return true;
-            } else {
-                return false;
-            }
+            if ($body.text().includes(value)) return true 
+            else return false;
         });
     }
 
@@ -41,9 +38,7 @@ export default class GenericFuntions {
     get_attributeMatch_click = (element, attribute, value) => {
         cy.get(element).each(($element) => {
             const attributeValue = $element.attr(attribute);
-            if (attributeValue == value) {
-                cy.wrap($element).click({ force: true });
-            }
+            if (attributeValue == value) cy.wrap($element).click({ force: true });
         });
     }
 
