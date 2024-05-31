@@ -1,4 +1,4 @@
-const RegistrationErrorMessages = {
+const registrationErrorMessages = {
     FIRSTNAME: '*First Name is required',
     EMAIL: '*Email is required',
     PHONENUMBER: '*Phone Number is required',
@@ -7,4 +7,4 @@ const RegistrationErrorMessages = {
     AGECHKBX: '*Please check above checkbox'
 };
 
-export default RegistrationErrorMessages;
+export default registrationErrorMessages;

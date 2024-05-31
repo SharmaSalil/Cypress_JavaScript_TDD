@@ -2,7 +2,7 @@
 
 import PageObjectManager from '../../support/pageObjectManager/PageObjectManager'
 
-describe("Login test cases for valid data", () => {
+context("Login test cases for valid data", () => {
 
     before(() => {
         const pageObjectManager = new PageObjectManager();
@@ -14,13 +14,13 @@ describe("Login test cases for valid data", () => {
         pageObjectManager.getRegistration().goToRegisterationPage()
     });
 
-    it("To check if users can register successfully with correct information", () => {
+    specify("To check if users can register successfully with correct information", () => {
         const pageObjectManager = new PageObjectManager();
         pageObjectManager.getRegistration().fillDataForRegistration()
         pageObjectManager.getRegistration().login_BTN_getElement().should("be.visible")
     })
 
-    it("To verify that when a user clicks the 'Register' button without filling in the required fields, an error message should appear.", () => {
+    specify("To verify that when a user clicks the 'Register' button without filling in the required fields, an error message should appear.", () => {
         const pageObjectManager = new PageObjectManager();
         pageObjectManager.getRegistration().register_BTN_click()
         pageObjectManager.getRegistration().errorMessage_TXT_get_shouldWithVisibleAndExist()

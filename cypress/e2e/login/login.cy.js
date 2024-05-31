@@ -1,8 +1,7 @@
 /// <reference types="cypress" />
 import PageObjectManager from '../../support/pageObjectManager/PageObjectManager'
 
-
-describe("Login Page Test Cases", () => {
+context("Login Page Test Cases", () => {
 
     before(() => {
         const pageObjectManager = new PageObjectManager();
@@ -14,7 +13,7 @@ describe("Login Page Test Cases", () => {
         pageObjectManager.getLogin().goToLoginPage()
     });
 
-    it("To verify that the user can log in successfully using valid data.", () => {
+    specify("To verify that the user can log in successfully using valid data.", () => {
         const pageObjectManager = new PageObjectManager();
         pageObjectManager.getReadData().readDataUsingReadFile(pageObjectManager.getFixturePath().validLoginData.path).then(data => {
             pageObjectManager.getLogin().login(data.email, data.password)
@@ -22,12 +21,10 @@ describe("Login Page Test Cases", () => {
         pageObjectManager.getGenericFunctions().return_url().should('eq', pageObjectManager.getUrl().getHomePageUrl());
     })
 
-    it("To verify the visibility of error message(at bottom) to user attempting to log-in with invalid credential - globalErrInvalidData", () => {
+    specify("To verify the visibility of error message(at bottom) to user attempting to log-in with invalid credential - globalErrInvalidData", () => {
         const pageObjectManager = new PageObjectManager();
         pageObjectManager.getReadData().readDataUsingReadFile(pageObjectManager.getFixturePath().globalErrInvalidData.path).each(data => {
-            pageObjectManager.getLogin().email_TXTFLD_type(data.email)
-            pageObjectManager.getLogin().password_TXTFLD_type(data.password)
-            pageObjectManager.getLogin().login_BTN_click()
+            pageObjectManager.getLogin().login(data.email, data.password)
             pageObjectManager.getLogin().globalError_TXT_get_invoke().should("contain", "Incorrect email or password")
         })
     })
