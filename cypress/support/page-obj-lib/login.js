@@ -12,6 +12,7 @@ export default class Login {
     get login_BTN() { return { locator: "#login" } }
     get register_BTN() { return { locator: "section .btn1" } }
     get globalError_TXT() { return { locator: "#toast-container .toast-error" } }
+    get invalidFeedback_TXT() { return { locator: "div .invalid-feedback" } }
 
     goToLoginPage() {
         const genericFuntions = new GenericFuntions();
@@ -66,15 +67,27 @@ export default class Login {
         })
     }
 
-    globalError_TXT_get_shouldWithVisibleAndExist(){
+    globalError_TXT_get_shouldWithVisibleAndExist() {
         const genericFuntions = new GenericFuntions();
         genericFuntions.get_shouldWithVisibleAndExist(this.globalError_TXT.locator)
     }
 
-    globalError_TXT_get_invoke(){
+    globalError_TXT_get_invoke() {
         const genericFuntions = new GenericFuntions();
         this.globalError_TXT_get_shouldWithVisibleAndExist()
         return genericFuntions.get_invoke(this.globalError_TXT.locator, "text")
+    }
+
+    // invalidFeedback_TXT_get_shouldWithVisibleAndExist() {
+    //     const genericFuntions = new GenericFuntions();
+    //     genericFuntions.get_shouldWithVisibleAndExist(this.invalidFeedback_TXT.locator)
+    // }
+
+    invalidFeedback_TXT_get_invoke() {
+        const genericFuntions = new GenericFuntions();
+        // this.invalidFeedback_TXT_get_shouldWithVisibleAndExist()
+        // return genericFuntions.get_invoke(this.invalidFeedback_TXT.locator, "text")
+        return cy.get(this.invalidFeedback_TXT.locator).invoke("text")
     }
 
 }

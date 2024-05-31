@@ -7,6 +7,7 @@ module.exports = defineConfig({
   defaultCommandTimeout: 30 * 1000,
   experimentalMemoryManagement: true,
   chromeWebSecurity: false,
+  trashAssetsBeforeRuns:true,
   reporter: 'cypress-mochawesome-reporter',
 
   video: false,
