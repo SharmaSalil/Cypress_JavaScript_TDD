@@ -3,14 +3,16 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
 
-  env:{
-    env:'QA'
+  env: {
+    ENV: 'qa',
+    SUITE: 'all' // sanity
   },
   pageLoadTimeout: 30 * 1000,
   defaultCommandTimeout: 30 * 1000,
   experimentalMemoryManagement: true,
+  numTestsKeptInMemory: 0,
   chromeWebSecurity: false,
-  trashAssetsBeforeRuns:true,
+  trashAssetsBeforeRuns: true,
   reporter: 'cypress-mochawesome-reporter',
 
   video: false,
@@ -29,4 +31,8 @@ module.exports = defineConfig({
     },
     specPattern: "cypress/e2e/**/*.js"
   },
+  retries: {
+    runMode: 2,
+    openMode: 1
+  }
 });
