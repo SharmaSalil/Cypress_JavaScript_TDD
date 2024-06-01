@@ -1,7 +1,7 @@
 import GenericFuntions from '../genericFunctions/GenericFunctions'
 import FixturePath from '../fixtureReader/FixturePath';
 import ReadData from '../fixtureReader/ReadData'
-import WriteData from '../fixtureReader/WriteData'
+import WriteData from '../fixtureReader/WriteData';
 import Url from '../urlHandler/Url'
 
 export default class Login {
