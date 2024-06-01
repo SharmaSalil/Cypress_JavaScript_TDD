@@ -7,7 +7,9 @@
     "clean:directories": "rm -rf cypress/screenshots && mkdir -p cypress/screenshots && rm -rf cypress/reports && mkdir -p cypress/reports",
     "test-execution": "npm run clean:directories && npx cypress run --e2e --headed"
   },
-  "author": "",
+  "author": "SALIL SHARMA",
+  "authorLinkedinProfile":"https://www.linkedin.com/in/-salilsharma/",
+  "authorGitProfile":"https://github.com/SharmaSalil ",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^13.10.0",
