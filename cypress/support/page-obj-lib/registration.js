@@ -26,8 +26,8 @@ export default class Registration {
         const utility = new Utility()
         const writeData = new WriteData()
         const fixturePath = new FixturePath()
-        let firstName = utility.generateRandomWord(5).toString()
-        let lastName = utility.generateRandomWord(5).toString()
+        let firstName = utility.generateRandomWord(1).toString().toUpperCase() + utility.generateRandomWord(5).toString()
+        let lastName = utility.generateRandomWord(1).toString().toUpperCase() + utility.generateRandomWord(5).toString()
         let email = (utility.generateRandomWord(3).toString() + utility.createTimestamp().toString() + "@yopmail.com")
         let phoneNumber = utility.generateNumber(10).toString()
         let occupation = this.occupation_DRPDWN.values[utility.getRandomNumber((this.occupation_DRPDWN.values.length) - 1)].toString()
@@ -160,12 +160,12 @@ export default class Registration {
         genericFunctions.get_shouldWithVisibleAndExist(this.errorMessage_TXT.locator)
     }
 
-    ageValidationMessage_CHKBX_get_invoke(){
+    ageValidationMessage_CHKBX_get_invoke() {
         const genericFunctions = new GenericFunctions()
         return genericFunctions.get_invoke(this.ageValidationMessage_CHKBX.locator, "text")
     }
 
-    goToRegisterationPage(){
+    goToRegisterationPage() {
         const login = new Login()
         login.goToLoginPage()
         login.register_BTN_click()

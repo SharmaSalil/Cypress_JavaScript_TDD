@@ -14,7 +14,7 @@ context("Login test cases for valid data", () => {
         pageObjectManager.getRegistration().goToRegisterationPage()
     });
 
-    specify("To check if users can register successfully with correct information", () => {
+    specify("To check if users can register successfully with correct information| Tag : sanity", () => {
         const pageObjectManager = new PageObjectManager();
         pageObjectManager.getRegistration().fillDataForRegistration()
         pageObjectManager.getRegistration().login_BTN_getElement().should("be.visible")
