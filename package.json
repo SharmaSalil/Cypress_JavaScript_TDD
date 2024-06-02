@@ -4,15 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "clean:directories": "rm -rf cypress/screenshots && mkdir -p cypress/screenshots && rm -rf cypress/reports && mkdir -p cypress/reports",
+    "test-execution": "npm run clean:directories && npx cypress run --e2e --headed"
   },
   "author": "",
+  "authorLinkedinProfile":"",
+  "authorGitProfile":"",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^13.10.0",
     "cypress-mochawesome-reporter": "^3.8.2"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.5"
   }
 }
