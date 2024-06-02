@@ -1,8 +1,7 @@
 import GenericFuntions from '../genericFunctions/GenericFunctions'
 import FixturePath from '../fixtureReader/FixturePath'
 import ReadData from '../fixtureReader/ReadData'
-import WriteData from '../fixtureReader/WriteData';
-import Url from '../urlHandler/Url'
+import WriteData from '../fixtureReader/WriteData'
 
 export default class Login {
 
@@ -10,14 +9,7 @@ export default class Login {
     get password_TXTFLD() { return { locator: "#userPassword" } }
     get login_BTN() { return { locator: "#login" } }
     get register_BTN() { return { locator: "section .btn1" } }
-    get globalError_TXT() { return { locator: "#toast-container .toast-error" } }
-    get invalidFeedback_TXT() { return { locator: "div .invalid-feedback" } }
 
-    goToLoginPage() {
-        const genericFuntions = new GenericFuntions();
-        const getUrl = new Url();
-        genericFuntions.loadPage(getUrl.getLoginUrl());
-    }
 
     email_TXTFLD_clear = () => {
         const genericFuntions = new GenericFuntions();
@@ -46,8 +38,8 @@ export default class Login {
         genericFuntions.get_click(this.login_BTN.locator)
     }
 
-    login = (email, password) => {
-        this.email_TXTFLD_type(email)
+    login = (username, password) => {
+        this.email_TXTFLD_type(username)
         this.password_TXTFLD_type(password)
         this.login_BTN_click()
     }
@@ -57,7 +49,7 @@ export default class Login {
         genericFuntions.get_click(this.register_BTN.locator)
     }
 
-    getLoginData = () => {
+    getLoginDataFromRegistration = () => {
         const writeData = new WriteData()
         const readData = new ReadData()
         const fixturePath = new FixturePath()
@@ -65,29 +57,6 @@ export default class Login {
             writeData.writeData(fixturePath.validLoginData.path, { email: data.email, password: data.password })
         })
     }
-
-    globalError_TXT_get_shouldWithVisibleAndExist() {
-        const genericFuntions = new GenericFuntions();
-        genericFuntions.get_shouldWithVisibleAndExist(this.globalError_TXT.locator)
-    }
-
-    globalError_TXT_get_invoke() {
-        const genericFuntions = new GenericFuntions();
-        this.globalError_TXT_get_shouldWithVisibleAndExist()
-        return genericFuntions.get_invoke(this.globalError_TXT.locator, "text")
-    }
-
-    invalidFeedback_TXT_get_shouldWithVisibleAndExist() {
-        const genericFuntions = new GenericFuntions();
-        genericFuntions.get_shouldWithVisibleAndExist(this.invalidFeedback_TXT.locator)
-    }
-
-    invalidFeedback_TXT_get_invoke() {
-        const genericFuntions = new GenericFuntions();
-        this.invalidFeedback_TXT_get_shouldWithVisibleAndExist()
-        return genericFuntions.get_invoke(this.invalidFeedback_TXT.locator, "text")
-    }
-
 }
 
 

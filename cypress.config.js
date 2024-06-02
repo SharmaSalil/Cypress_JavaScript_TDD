@@ -1,18 +1,21 @@
 /// <reference types="cypress" />
 const { defineConfig } = require("cypress");
 
+const dotenv = require('dotenv');
+const path = require('path')
+
+const envFilePath = path.join(__dirname, `env/${process.env.ENV}.env`)
+
+console.log("envFilePath ::", envFilePath)
+
+dotenv.config({ path: envFilePath })
+
 module.exports = defineConfig({
 
-  env: {
-    ENV: 'qa',
-    SUITE: 'all' // sanity
-  },
   pageLoadTimeout: 30 * 1000,
   defaultCommandTimeout: 30 * 1000,
   experimentalMemoryManagement: true,
-  numTestsKeptInMemory: 0,
   chromeWebSecurity: false,
-  trashAssetsBeforeRuns: true,
   reporter: 'cypress-mochawesome-reporter',
 
   video: false,
@@ -31,8 +34,4 @@ module.exports = defineConfig({
     },
     specPattern: "cypress/e2e/**/*.js"
   },
-  retries: {
-    runMode: 2,
-    openMode: 1
-  }
 });

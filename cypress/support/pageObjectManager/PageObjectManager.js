@@ -5,7 +5,6 @@ import ReadData from '../fixtureReader/ReadData'
 import Registration from '../page-obj-lib/Registration'
 import FixturePath from '../fixtureReader/FixturePath'
 import RegistrationErrorMessages from '../enum/registration/registration';
-import Chai from '../enum/chai/chai';
 
 export default class PageObjectManager {
 
@@ -17,7 +16,6 @@ export default class PageObjectManager {
         this.registration = new Registration();
         this.fixturePath = new FixturePath()
         this.registrationErrorMessages = RegistrationErrorMessages
-        this.chai = Chai
     }
 
     getLogin = () => {
@@ -46,9 +44,5 @@ export default class PageObjectManager {
 
     getRegistrationErrorMessages = () => {
         return this.registrationErrorMessages;
-    }
-
-    getChai = () => {
-        return this.chai;
     }
 }

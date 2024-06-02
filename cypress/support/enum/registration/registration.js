@@ -1,12 +1,10 @@
-const registrationErrorMessages = {
+const RegistrationErrorMessages = {
     FIRSTNAME: '*First Name is required',
     EMAIL: '*Email is required',
-    EMAILFEEDBACK: '*Enter Valid Email',
     PHONENUMBER: '*Phone Number is required',
     PASSWORD: '*Password is required',
     CONFIRMPASSWORD: 'Confirm Password is required',
-    AGECHKBX: '*Please check above checkbox',
-    GLOBALERRMSSG: 'Incorrect email or password'
+    AGECHKBX: '*Please check above checkbox'
 };
 
-export default registrationErrorMessages;
+export default RegistrationErrorMessages;

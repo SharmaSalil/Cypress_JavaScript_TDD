@@ -1,15 +1,23 @@
 export default class Url {
 
+    envirounment = 'QA'
+
     getBaseUrl = () => {
-        if (Cypress.env('ENV') == 'qa') return 'https://www.rahulshettyacademy.com'
+        if (this.envirounment == 'QA') {
+            return 'https://www.rahulshettyacademy.com'
+        }
     }
 
     getLoginUrl = () => {
-        if (Cypress.env('ENV') == 'qa') return this.getBaseUrl() + '/client/'
+        if (this.envirounment == 'QA') {
+            return this.getBaseUrl() + '/client/'
+        }
     }
 
     getHomePageUrl = () => {
-        if (Cypress.env('ENV') == 'qa') return this.getBaseUrl() + '/client/dashboard/dash'   
+        if (this.envirounment == 'QA') {
+            return this.getBaseUrl() + '/client/dashboard/dash'
+        }
     }
 
 }
