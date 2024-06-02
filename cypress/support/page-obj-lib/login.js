@@ -1,10 +1,24 @@
-import GenericFuntions from '../genericFunctions/GenericFunctions'
+import GenericFunctions from '../genericFunctions/GenericFunctions'
 import FixturePath from '../fixtureReader/FixturePath'
 import ReadData from '../fixtureReader/ReadData'
 import WriteData from '../fixtureReader/WriteData';
 import Url from '../urlHandler/Url'
 
 export default class Login {
+
+    constructor() {
+
+        if (Login.instance) {
+            return Login.instance;
+        }
+        this.genericFunctions = new GenericFunctions();
+        this.getUrl = new Url();
+        this.readData = new ReadData();
+        this.writeData = new WriteData();
+        this.fixturePath = new FixturePath();
+
+        Login.instance = this;
+    }
 
     get email_TXTFLD() { return { locator: "#userEmail" } }
     get password_TXTFLD() { return { locator: "#userPassword" } }
@@ -14,36 +28,29 @@ export default class Login {
     get invalidFeedback_TXT() { return { locator: "div .invalid-feedback" } }
 
     goToLoginPage() {
-        const genericFuntions = new GenericFuntions();
-        const getUrl = new Url();
-        genericFuntions.loadPage(getUrl.getLoginUrl());
+        this.genericFunctions.loadPage(this.getUrl.getLoginUrl());
     }
 
     email_TXTFLD_clear = () => {
-        const genericFuntions = new GenericFuntions();
-        genericFuntions.get_clear(this.email_TXTFLD.locator)
+        this.genericFunctions.get_clear(this.email_TXTFLD.locator)
     }
 
     email_TXTFLD_type = (value) => {
-        const genericFuntions = new GenericFuntions();
         this.email_TXTFLD_clear()
-        genericFuntions.get_type(this.email_TXTFLD.locator, value)
+        this.genericFunctions.get_type(this.email_TXTFLD.locator, value)
     }
 
     password_TXTFLD_clear = () => {
-        const genericFuntions = new GenericFuntions();
-        genericFuntions.get_clear(this.password_TXTFLD.locator)
+        this.genericFunctions.get_clear(this.password_TXTFLD.locator)
     }
 
     password_TXTFLD_type = (value) => {
-        const genericFuntions = new GenericFuntions();
         this.password_TXTFLD_clear()
-        genericFuntions.get_type(this.password_TXTFLD.locator, value)
+        this.genericFunctions.get_type(this.password_TXTFLD.locator, value)
     }
 
     login_BTN_click = () => {
-        const genericFuntions = new GenericFuntions();
-        genericFuntions.get_click(this.login_BTN.locator)
+        this.genericFunctions.get_click(this.login_BTN.locator)
     }
 
     login = (email, password) => {
@@ -53,42 +60,38 @@ export default class Login {
     }
 
     register_BTN_click = () => {
-        const genericFuntions = new GenericFuntions();
-        genericFuntions.get_click(this.register_BTN.locator)
+        this.genericFunctions.get_click(this.register_BTN.locator)
     }
 
     getLoginData = () => {
-        const writeData = new WriteData()
-        const readData = new ReadData()
-        const fixturePath = new FixturePath()
-        readData.readDataUsingReadFile(fixturePath.registrationData.path).then(data => {
-            writeData.writeData(fixturePath.validLoginData.path, { email: data.email, password: data.password })
+        this.readData.readDataUsingReadFile(this.fixturePath.registrationData.path).then(data => {
+            this.writeData.writeData(this.fixturePath.validLoginData.path, { email: data.email, password: data.password })
         })
     }
 
     globalError_TXT_get_shouldWithVisibleAndExist() {
-        const genericFuntions = new GenericFuntions();
-        genericFuntions.get_shouldWithVisibleAndExist(this.globalError_TXT.locator)
+        this.genericFunctions.get_shouldWithVisibleAndExist(this.globalError_TXT.locator)
     }
 
     globalError_TXT_get_invoke() {
-        const genericFuntions = new GenericFuntions();
         this.globalError_TXT_get_shouldWithVisibleAndExist()
-        return genericFuntions.get_invoke(this.globalError_TXT.locator, "text")
+        return this.genericFunctions.get_invoke(this.globalError_TXT.locator, "text")
     }
 
     invalidFeedback_TXT_get_shouldWithVisibleAndExist() {
-        const genericFuntions = new GenericFuntions();
-        genericFuntions.get_shouldWithVisibleAndExist(this.invalidFeedback_TXT.locator)
+        this.genericFunctions.get_shouldWithVisibleAndExist(this.invalidFeedback_TXT.locator)
     }
 
     invalidFeedback_TXT_get_invoke() {
-        const genericFuntions = new GenericFuntions();
         this.invalidFeedback_TXT_get_shouldWithVisibleAndExist()
-        return genericFuntions.get_invoke(this.invalidFeedback_TXT.locator, "text")
+        return this.genericFunctions.get_invoke(this.invalidFeedback_TXT.locator, "text")
     }
 
 }
+
+const loginInstance = new Login();
+Object.freeze(loginInstance);
+
 
 
 
