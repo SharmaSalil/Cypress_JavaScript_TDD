@@ -43,13 +43,25 @@ export default class GenericFunctions {
         cy.get(element).select(value)
     }
 
-    get_returnArrayOfOption=(element, text) =>{
-        return cy.get(element).then($element => {
-            if($elements.length === 0) cy.wait(1000)
-            const options = [...$element].filter(item => item.text !== text)
+    get_find_returnArrayOfOption = (element, subelement, text, value) => {
+        return cy.get(element).find(subelement).then($elements => {
+            if ($elements.length === 0) cy.wait(1000)
+            const options = [...$elements].filter(item => item.text !== text)
             let randomIndex = this.utility.getRandomNumber(options.length - 1);
-            const selectedOption = options[randomIndex];
-            return cy.wrap(selectedOption.value);
+            let selectedOption = cy.wrap(options).eq(randomIndex).invoke("attr", value)
+
+            return selectedOption
+        });
+    }
+
+    get_returnArrayOfOption = (element, value) => {
+        return cy.get(element).then($elements => {
+            if ($elements.length === 0) cy.wait(1000)
+            const options = [...$elements]
+            let randomIndex = this.utility.getRandomNumber(options.length - 1);
+            let selectedOption = cy.wrap(options).eq(randomIndex).invoke("attr", value)
+
+            return selectedOption
         });
     }
 

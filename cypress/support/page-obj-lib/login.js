@@ -61,6 +61,7 @@ export default class Login {
     }
 
     register_BTN_click = () => {
+        this.genericFunctions.get_shouldWithVisibleAndExist(this.register_BTN.locator)
         this.genericFunctions.get_click(this.register_BTN.locator)
     }
 

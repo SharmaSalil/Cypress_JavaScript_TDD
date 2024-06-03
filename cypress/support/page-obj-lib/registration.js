@@ -24,8 +24,8 @@ export default class Registration {
     get lastName_TXTFLD() { return { locator: "#lastName" } }
     get email_TXTFLD() { return { locator: "#userEmail" } }
     get mobileNumber_TXTFLD() { return { locator: "#userMobile" } }
-    get occupation_DRPDWN() { return { locator: "select[formcontrolname='occupation']", values: ["1: Doctor", "2: Student", "3: Engineer", "4: Scientist"] } }
-    get gender_RDOBTN() { return { locator: "input[type='radio']", attribute: "value", values: ["Male", "Female"] } }
+    get occupation_DRPDWN() { return { locator: "select[formcontrolname='occupation']", subElement: "option", attribute: "value" } }
+    get gender_RDOBTN() { return { locator: "input[type='radio']", attribute: "value" } }
     get password_TXTFLD() { return { locator: "#userPassword" } }
     get confirmPassword_TXTFLD() { return { locator: "#confirmPassword" } }
     get age_CHKBX() { return { locator: "input[type='checkbox']" } }
@@ -34,17 +34,21 @@ export default class Registration {
     get errorMessage_TXT() { return { locator: ".invalid-feedback div" } }
     get ageValidationMessage_CHKBX() { return { locator: ".row > [style*='margin-top:'] > div" } }
 
-
     createDataForRegistration = () => {
-        let firstName = this.utility.generateRandomWord(1).toString().toUpperCase() + this.utility.generateRandomWord(5).toString()
-        let lastName = this.utility.generateRandomWord(1).toString().toUpperCase() + this.utility.generateRandomWord(5).toString()
-        let email = (this.utility.generateRandomWord(3).toString() + this.utility.createTimestamp().toString() + "@yopmail.com")
-        let phoneNumber = this.utility.generateNumber(10).toString()
-        let occupation = this.occupation_DRPDWN.values[this.utility.getRandomNumber((this.occupation_DRPDWN.values.length) - 1)].toString()
-        let gender = this.gender_RDOBTN.values[this.utility.getRandomNumber((this.gender_RDOBTN.values.length) - 1)].toString()
-        let password = this.utility.generateNumber(8).toString() + this.utility.generateRandomWord(1).toString().toUpperCase() + this.utility.generateRandomWord(1).toString() + "!"
-        let confirmPassword = password
-        this.writeData.writeData(this.fixturePath.registrationData.path, { firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, occupation: occupation, gender: gender, password: password, confirmPassword: confirmPassword })
+        this.occupation_DRPDWN_selectValue().then(occupationValue => {
+            this.gender_RDOBTN_selectValue().then(genderValue => {
+                let firstName = this.createName(5)
+                let lastName = this.createName(5)
+                let email = this.createEmail(3)
+                let phoneNumber = this.createMobileNumber(10)
+                let occupation = occupationValue
+                let gender = genderValue
+                let password = this.createPassword()
+                let confirmPassword = password
+                this.writeData.writeData(this.fixturePath.registrationData.path, { firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, occupation: occupation, gender: gender, password: password, confirmPassword: confirmPassword })
+            })
+        })
+
     }
 
     fillDataForRegistration = () => {
@@ -60,6 +64,38 @@ export default class Registration {
             this.age_CHKBX_click()
             this.register_BTN_click()
         })
+    }
+
+    occupation_DRPDWN_selectValue() {
+        return this.genericFunctions.get_find_returnArrayOfOption(this.occupation_DRPDWN.locator, this.occupation_DRPDWN.subElement, "Choose your occupation", "value")
+    }
+
+    gender_RDOBTN_selectValue() {
+        return this.genericFunctions.get_returnArrayOfOption(this.gender_RDOBTN.locator, "value")
+    }
+
+    createName(length) {
+        let name = this.utility.generateRandomWord(1).toString().toUpperCase() + this.utility.generateRandomWord(length - 1).toString()
+        return name
+    }
+
+    createEmail(length) {
+        let email = this.utility.generateRandomWord(length).toString() + this.utility.createTimestamp().toString() + "@yopmail.com"
+        return email
+    }
+
+    createMobileNumber(length) {
+        let number = this.utility.generateNumber(length).toString()
+        return number
+    }
+
+    createPassword() {
+        let password
+        password = this.utility.generateNumber(8).toString()
+        password = password + this.utility.generateRandomWord(1).toString().toUpperCase()
+        password = password + this.utility.generateRandomWord(1).toString()
+        password = password + this.utility.generateRandomSplCharacter(1)
+        return password
     }
 
     firstName_TXTFLD_clear = () => {

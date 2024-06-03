@@ -6,6 +6,7 @@ context("Login test cases for valid data", () => {
 
     before(() => {
         const pageObjectManager = new PageObjectManager();
+        pageObjectManager.getRegistration().goToRegisterationPage()
         pageObjectManager.getRegistration().createDataForRegistration();
     })
 
