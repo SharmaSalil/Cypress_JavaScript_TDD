@@ -1,9 +1,7 @@
 export default class WriteData {
 
     constructor() {
-        if (WriteData.instance) {
-            return WriteData.instance;
-        }
+        if (WriteData.instance) return WriteData.instance;
 
         WriteData.instance = this;
     }

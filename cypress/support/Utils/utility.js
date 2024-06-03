@@ -1,9 +1,8 @@
 export default class Utility {
 
     constructor() {
-        if (Utility.instance) {
-            return Utility.instance;
-        }
+        if (Utility.instance) return Utility.instance;
+    
         Utility.instance = this;
     }
 

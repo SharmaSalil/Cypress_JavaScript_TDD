@@ -3,9 +3,7 @@ import Utility from '../Utils/Utility'
 export default class GenericFunctions {
 
     constructor() {
-        if (GenericFunctions.instance) {
-            return GenericFunctions.instance;
-        }
+        if (GenericFunctions.instance) return GenericFunctions.instance;
 
         this.utility = new Utility()
 

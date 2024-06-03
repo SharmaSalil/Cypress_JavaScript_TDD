@@ -1,9 +1,7 @@
 export default class Url {
 
     constructor() {
-        if (Url.instance) {
-            return Url.instance;
-        }
+        if (Url.instance) return Url.instance;
 
         this.environment = 'QA';
 

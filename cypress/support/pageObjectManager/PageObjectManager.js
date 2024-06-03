@@ -25,19 +25,12 @@ export default class PageObjectManager {
     }
 
     getLogin = () => this.login;
-
     getGenericFunctions = () => this.genericFunctions;
-
     getUrl = () => this.url;
-
     getReadData = () => this.readData;
-
     getRegistration = () => this.registration;
-
     getFixturePath = () => this.fixturePath;
-
     getRegistrationErrorMessages = () => this.registrationErrorMessages;
-
     getChai = () => this.chai;
 }
 

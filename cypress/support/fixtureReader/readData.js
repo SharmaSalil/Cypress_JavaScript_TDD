@@ -1,9 +1,7 @@
 export default class ReadData{
 
     constructor() {
-        if (ReadData.instance) {
-            return ReadData.instance;
-        }
+        if (ReadData.instance) return ReadData.instance;
 
         ReadData.instance = this;
     }

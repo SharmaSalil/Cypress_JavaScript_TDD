@@ -1,9 +1,7 @@
 export default class FixturePath {
 
     constructor() {
-        if (FixturePath.instance) {
-            return FixturePath.instance;
-        }
+        if (FixturePath.instance) return FixturePath.instance;
 
         FixturePath.instance = this;
     }

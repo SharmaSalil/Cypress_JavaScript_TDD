@@ -8,9 +8,7 @@ export default class Login {
 
     constructor() {
 
-        if (Login.instance) {
-            return Login.instance;
-        }
+        if (Login.instance) return Login.instance;
 
         this.genericFunctions = new GenericFunctions();
         this.getUrl = new Url();
