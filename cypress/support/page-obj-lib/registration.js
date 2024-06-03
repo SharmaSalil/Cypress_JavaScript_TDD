@@ -44,7 +44,7 @@ export default class Registration {
                 let phoneNumber = this.createMobileNumber(10)
                 let occupation = occupationValue
                 let gender = genderValue
-                let password = this.createPassword()
+                let password = this.createPassword(8)
                 let confirmPassword = password
                 this.writeData.writeData(this.fixturePath.registrationData.path, { firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, occupation: occupation, gender: gender, password: password, confirmPassword: confirmPassword })
             })
@@ -90,9 +90,9 @@ export default class Registration {
         return number
     }
 
-    createPassword() {
+    createPassword(length) {
         let password
-        password = this.utility.generateNumber(8).toString()
+        password = this.utility.generateNumber(length).toString()
         password = password + this.utility.generateRandomWord(1).toString().toUpperCase()
         password = password + this.utility.generateRandomWord(1).toString()
         password = password + this.utility.generateRandomSplCharacter(1)
