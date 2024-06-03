@@ -1,9 +1,13 @@
+import Utility from '../Utils/Utility'
+
 export default class GenericFunctions {
 
     constructor() {
         if (GenericFunctions.instance) {
             return GenericFunctions.instance;
         }
+
+        this.utility = new Utility()
 
         GenericFunctions.instance = this;
     }
@@ -39,15 +43,22 @@ export default class GenericFunctions {
         cy.get(element).select(value)
     }
 
-    get_returnArrayOfOption=(element) =>{
-        return cy.get(element).then($options => {
-            const options = [...$options]
-            return options
-        })
+    get_returnArrayOfOption=(element, text) =>{
+        return cy.get(element).then($element => {
+            if($elements.length === 0) cy.wait(1000)
+            const options = [...$element].filter(item => item.text !== text)
+            let randomIndex = this.utility.getRandomNumber(options.length - 1);
+            const selectedOption = options[randomIndex];
+            return cy.wrap(selectedOption.value);
+        });
     }
 
     get_invoke = (element, value) => {
         return cy.get(element).invoke(value)
+    }
+
+    get_index_invoke = (element, value, index) => {
+        return cy.get(element).eq(index).invoke(value)
     }
 
     get_attributeMatch_click = (element, attribute, value) => {

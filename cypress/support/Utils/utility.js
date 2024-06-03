@@ -17,6 +17,16 @@ export default class Utility {
         return word;
     }
 
+    generateRandomSplCharacter = (length) => {
+        const characters = '!@#$%^&*()';
+        let word = '';
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            word += characters[randomIndex];
+        }
+        return word;
+    }
+
     generateNumber = (length) => {
         let phoneNumber = "";
         for (let i = 0; i < length; i++) {
