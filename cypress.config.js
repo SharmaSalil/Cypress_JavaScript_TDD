@@ -3,10 +3,6 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
 
-  env:{
-    ENV:"qa"
-  },
-
   pageLoadTimeout: 30 * 1000,
   defaultCommandTimeout: 30 * 1000,
   experimentalMemoryManagement: true,
@@ -30,6 +26,10 @@ module.exports = defineConfig({
       require('cypress-mochawesome-reporter/plugin')(on);
     },
     specPattern: "cypress/e2e/**/*.js"
+  },
+  env:{
+    ENV:"qa",
+    SUITE:"sanity"
   },
   retries: {
     runMode: 2,

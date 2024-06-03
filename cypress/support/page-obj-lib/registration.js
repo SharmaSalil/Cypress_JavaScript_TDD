@@ -76,12 +76,17 @@ export default class Registration {
     }
 
     createName(length) {
-        let name = this.utility.generateRandomWord(1).toString().toUpperCase() + this.utility.generateRandomWord(length - 1).toString()
+        let name
+        name = this.utility.generateRandomWord(1).toString().toUpperCase() 
+        name += this.utility.generateRandomWord(length - 1).toString()
         return name
     }
 
     createEmail(length) {
-        let email = this.utility.generateRandomWord(length).toString() + this.utility.createTimestamp().toString() + "@yopmail.com"
+        let email
+        email = this.utility.generateRandomWord(length).toString()
+        email += this.utility.createTimestamp().toString()
+        email += "@yopmail.com"
         return email
     }
 
@@ -93,9 +98,9 @@ export default class Registration {
     createPassword(length) {
         let password
         password = this.utility.generateNumber(length).toString()
-        password = password + this.utility.generateRandomWord(1).toString().toUpperCase()
-        password = password + this.utility.generateRandomWord(1).toString()
-        password = password + this.utility.generateRandomSplCharacter(1)
+        password += this.utility.generateRandomWord(1).toString().toUpperCase()
+        password += this.utility.generateRandomWord(1).toString()
+        password += this.utility.generateRandomSplCharacter(1)
         return password
     }
 

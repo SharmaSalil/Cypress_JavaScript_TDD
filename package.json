@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "clean:directories": "rm -rf cypress/screenshots && mkdir -p cypress/screenshots && rm -rf cypress/reports && mkdir -p cypress/reports",
-    "test-execution": "npm run clean:directories && npx cypress run --spec ./cypress/e2e/Registration/registration.cy.js, ./cypress/e2e/login/login.cy.js --headed"
+    "test-execution": "npm run clean:directories && npx cypress run --spec ./cypress/e2e/Registration/registration.cy.js, ./cypress/e2e/login/login.cy.js --headed",
+    "sanity-ecexution":"npx cypress run --env SUITE=sanity"
   },
   "author": "",
   "authorLinkedinProfile": "",
