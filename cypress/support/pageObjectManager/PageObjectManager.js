@@ -10,10 +10,7 @@ import Chai from '../enum/chai/chai';
 export default class PageObjectManager {
 
     constructor() {
-
-        if (PageObjectManager.instance) {
-            return PageObjectManager.instance;
-        }
+        if (PageObjectManager.instance) return PageObjectManager.instance;
 
         this.login = new Login();
         this.genericFunctions = new GenericFunctions()
@@ -27,37 +24,21 @@ export default class PageObjectManager {
         PageObjectManager.instance = this;
     }
 
-    getLogin = () => {
-        return this.login;
-    }
+    getLogin = () => this.login;
 
-    getGenericFunctions = () => {
-        return this.genericFunctions;
-    }
+    getGenericFunctions = () => this.genericFunctions;
 
-    getUrl = () => {
-        return this.url;
-    }
+    getUrl = () => this.url;
 
-    getReadData = () => {
-        return this.readData;
-    }
+    getReadData = () => this.readData;
 
-    getRegistration = () => {
-        return this.registration;
-    }
+    getRegistration = () => this.registration;
 
-    getFixturePath = () => {
-        return this.fixturePath;
-    }
+    getFixturePath = () => this.fixturePath;
 
-    getRegistrationErrorMessages = () => {
-        return this.registrationErrorMessages;
-    }
+    getRegistrationErrorMessages = () => this.registrationErrorMessages;
 
-    getChai = () => {
-        return this.chai;
-    }
+    getChai = () => this.chai;
 }
 
 const pageObjectManagerInstance = new PageObjectManager();

@@ -14,7 +14,7 @@ export default class GenericFunctions {
 
     get_checkTextInBody(value) {
         return cy.get("body").then($body => {
-            if ($body.text().includes(value)) return true 
+            if ($body.text().includes(value)) return true
             else return false;
         });
     }
@@ -37,6 +37,13 @@ export default class GenericFunctions {
 
     get_select = (element, value) => {
         cy.get(element).select(value)
+    }
+
+    get_returnArrayOfOption=(element) =>{
+        return cy.get(element).then($options => {
+            const options = [...$options]
+            return options
+        })
     }
 
     get_invoke = (element, value) => {

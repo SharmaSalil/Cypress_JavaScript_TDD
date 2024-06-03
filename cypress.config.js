@@ -3,6 +3,10 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
 
+  env:{
+    ENV:"qa"
+  },
+
   pageLoadTimeout: 30 * 1000,
   defaultCommandTimeout: 30 * 1000,
   experimentalMemoryManagement: true,

@@ -4,7 +4,6 @@ export default class Utility {
         if (Utility.instance) {
             return Utility.instance;
         }
-
         Utility.instance = this;
     }
 
@@ -36,7 +35,6 @@ export default class Utility {
         return Math.floor(Math.random() * (value + 1));
     }
 
-    
 }
 
 const utilityInstance = new Utility();

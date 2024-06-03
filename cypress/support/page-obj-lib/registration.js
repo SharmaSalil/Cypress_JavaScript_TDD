@@ -8,10 +8,7 @@ import Login from '../page-obj-lib/Login'
 export default class Registration {
 
     constructor() {
-        
-        if (Registration.instance) {
-            return Registration.instance;
-        }
+        if (Registration.instance) return Registration.instance;
 
         this.utility = new Utility();
         this.fixturePath = new FixturePath();
@@ -65,97 +62,97 @@ export default class Registration {
         })
     }
 
-    firstName_TXTFLD_clear() {
+    firstName_TXTFLD_clear = () => {
         this.genericFunctions.get_clear(this.firstName_TXTFLD.locator)
     }
 
-    firstName_TXTFLD_type(value) {
+    firstName_TXTFLD_type = (value) => {
         this.firstName_TXTFLD_clear()
         this.genericFunctions.get_type(this.firstName_TXTFLD.locator, value)
     }
 
-    lastName_TXTFLD_clear() {
+    lastName_TXTFLD_clear = () => {
         this.genericFunctions.get_clear(this.lastName_TXTFLD.locator)
     }
 
-    lastName_TXTFLD_type(value) {
+    lastName_TXTFLD_type = (value) => {
         this.lastName_TXTFLD_clear()
         this.genericFunctions.get_type(this.lastName_TXTFLD.locator, value)
     }
 
-    email_TXTFLD_clear() {
+    email_TXTFLD_clear = () => {
         this.genericFunctions.get_clear(this.email_TXTFLD.locator)
     }
 
-    email_TXTFLD_type(value) {
+    email_TXTFLD_type = (value) => {
         this.email_TXTFLD_clear()
         this.genericFunctions.get_type(this.email_TXTFLD.locator, value)
     }
 
-    mobileNumber_TXTFLD_clear() {
+    mobileNumber_TXTFLD_clear = () => {
         this.genericFunctions.get_clear(this.mobileNumber_TXTFLD.locator)
     }
 
-    mobileNumber_TXTFLD_type(value) {
+    mobileNumber_TXTFLD_type = (value) => {
         this.mobileNumber_TXTFLD_clear()
         this.genericFunctions.get_type(this.mobileNumber_TXTFLD.locator, value)
     }
 
-    password_TXTFLD_clear() {
+    password_TXTFLD_clear = () => {
         this.genericFunctions.get_clear(this.password_TXTFLD.locator)
     }
 
-    password_TXTFLD_type(value) {
+    password_TXTFLD_type = (value) => {
         this.password_TXTFLD_clear()
         this.genericFunctions.get_type(this.password_TXTFLD.locator, value)
     }
 
-    confirmPassword_TXTFLD_clear() {
+    confirmPassword_TXTFLD_clear = () => {
         this.genericFunctions.get_clear(this.confirmPassword_TXTFLD.locator)
     }
 
-    confirmPassword_TXTFLD_type(value) {
+    confirmPassword_TXTFLD_type = (value) => {
         this.confirmPassword_TXTFLD_clear()
         this.genericFunctions.get_type(this.confirmPassword_TXTFLD.locator, value)
     }
 
-    age_CHKBX_click() {
+    age_CHKBX_click = () => {
         this.genericFunctions.get_click(this.age_CHKBX.locator)
     }
 
-    register_BTN_click() {
+    register_BTN_click = () => {
         this.genericFunctions.get_click(this.register_BTN.locator)
     }
 
-    occupation_DRPDWN_clickWithValue(value) {
+    occupation_DRPDWN_clickWithValue = (value) => {
         this.genericFunctions.get_select(this.occupation_DRPDWN.locator, value)
     }
 
-    gender_RDOBTN_matchAndClick(value) {
+    gender_RDOBTN_matchAndClick = (value) => {
         this.genericFunctions.get_attributeMatch_click(this.gender_RDOBTN.locator, this.gender_RDOBTN.attribute, value)
     }
 
-    login_BTN_click() {
+    login_BTN_click = () => {
         this.genericFunctions.get_click(this.login_BTN.loator)
     }
 
-    login_BTN_getElement() {
+    login_BTN_getElement = () => {
         return this.genericFunctions.get(this.login_BTN.loator)
     }
 
-    errorMessage_TXT_getText() {
+    errorMessage_TXT_getText = () => {
         return this.genericFunctions.get_invoke(this.errorMessage_TXT.locator, "text")
     }
 
-    errorMessage_TXT_get_shouldWithVisibleAndExist() {
+    errorMessage_TXT_get_shouldWithVisibleAndExist = () => {
         this.genericFunctions.get_shouldWithVisibleAndExist(this.errorMessage_TXT.locator)
     }
 
-    ageValidationMessage_CHKBX_get_invoke() {
+    ageValidationMessage_CHKBX_get_invoke = () => {
         return this.genericFunctions.get_invoke(this.ageValidationMessage_CHKBX.locator, "text")
     }
 
-    goToRegisterationPage() {
+    goToRegisterationPage = () => {
         this.login.goToLoginPage()
         this.login.register_BTN_click()
     }

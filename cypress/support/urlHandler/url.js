@@ -6,25 +6,20 @@ export default class Url {
         }
 
         this.environment = 'QA';
+
         Url.instance = this;
     }
 
     getBaseUrl = () => {
-        if (this.environment == 'QA') {
-            return 'https://www.rahulshettyacademy.com'
-        }
+        if (this.environment == 'QA') return 'https://www.rahulshettyacademy.com'
     }
 
     getLoginUrl = () => {
-        if (this.environment == 'QA') {
-            return this.getBaseUrl() + '/client/'
-        }
+        if (this.environment == 'QA') return this.getBaseUrl() + '/client/'
     }
 
     getHomePageUrl = () => {
-        if (this.environment == 'QA') {
-            return this.getBaseUrl() + '/client/dashboard/dash'
-        }
+        if (this.environment == 'QA') return this.getBaseUrl() + '/client/dashboard/dash'
     }
 
 }

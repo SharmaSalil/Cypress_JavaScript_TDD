@@ -11,7 +11,7 @@ export default class Login {
         if (Login.instance) {
             return Login.instance;
         }
-        
+
         this.genericFunctions = new GenericFunctions();
         this.getUrl = new Url();
         this.readData = new ReadData();
@@ -28,7 +28,7 @@ export default class Login {
     get globalError_TXT() { return { locator: "#toast-container .toast-error" } }
     get invalidFeedback_TXT() { return { locator: "div .invalid-feedback" } }
 
-    goToLoginPage() {
+    goToLoginPage = () => {
         this.genericFunctions.loadPage(this.getUrl.getLoginUrl());
     }
 
@@ -70,20 +70,20 @@ export default class Login {
         })
     }
 
-    globalError_TXT_get_shouldWithVisibleAndExist() {
+    globalError_TXT_get_shouldWithVisibleAndExist = () => {
         this.genericFunctions.get_shouldWithVisibleAndExist(this.globalError_TXT.locator)
     }
 
-    globalError_TXT_get_invoke() {
+    globalError_TXT_get_invoke = () => {
         this.globalError_TXT_get_shouldWithVisibleAndExist()
         return this.genericFunctions.get_invoke(this.globalError_TXT.locator, "text")
     }
 
-    invalidFeedback_TXT_get_shouldWithVisibleAndExist() {
+    invalidFeedback_TXT_get_shouldWithVisibleAndExist = () => {
         this.genericFunctions.get_shouldWithVisibleAndExist(this.invalidFeedback_TXT.locator)
     }
 
-    invalidFeedback_TXT_get_invoke() {
+    invalidFeedback_TXT_get_invoke = () => {
         this.invalidFeedback_TXT_get_shouldWithVisibleAndExist()
         return this.genericFunctions.get_invoke(this.invalidFeedback_TXT.locator, "text")
     }
