@@ -41,9 +41,8 @@ export default class GenericFunctions {
         cy.get(element).select(value)
     }
 
-    get_find_returnArrayOfOption = (element, subelement, text, value) => {
+    get_find_returnValueForDRODWN = (element, subelement, text, value) => {
         return cy.get(element).find(subelement).then($elements => {
-            if ($elements.length === 0) cy.wait(1000)
             const options = [...$elements].filter(item => item.text !== text)
             let randomIndex = this.utility.getRandomNumber(options.length - 1);
             let selectedOption = cy.wrap(options).eq(randomIndex).invoke("attr", value)
@@ -52,9 +51,8 @@ export default class GenericFunctions {
         });
     }
 
-    get_returnArrayOfOption = (element, value) => {
+    get_returnValueForCHKBOX = (element, value) => {
         return cy.get(element).then($elements => {
-            if ($elements.length === 0) cy.wait(1000)
             const options = [...$elements]
             let randomIndex = this.utility.getRandomNumber(options.length - 1);
             let selectedOption = cy.wrap(options).eq(randomIndex).invoke("attr", value)

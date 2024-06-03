@@ -3,6 +3,7 @@ import FixturePath from '../fixtureReader/FixturePath'
 import WriteData from '../fixtureReader/WriteData'
 import ReadData from '../fixtureReader/ReadData'
 import GenericFunctions from '../genericFunctions/GenericFunctions'
+import RegistrationErrorMessages from '../enum/registration/registration';
 import Login from '../page-obj-lib/Login'
 
 export default class Registration {
@@ -67,11 +68,11 @@ export default class Registration {
     }
 
     occupation_DRPDWN_selectValue() {
-        return this.genericFunctions.get_find_returnArrayOfOption(this.occupation_DRPDWN.locator, this.occupation_DRPDWN.subElement, "Choose your occupation", "value")
+        return this.genericFunctions.get_find_returnValueForDRODWN(this.occupation_DRPDWN.locator, this.occupation_DRPDWN.subElement, RegistrationErrorMessages.CHOOSEOCCUPATION, this.occupation_DRPDWN.attribute)
     }
 
     gender_RDOBTN_selectValue() {
-        return this.genericFunctions.get_returnArrayOfOption(this.gender_RDOBTN.locator, "value")
+        return this.genericFunctions.get_returnValueForCHKBOX(this.gender_RDOBTN.locator, this.gender_RDOBTN.attribute)
     }
 
     createName(length) {
