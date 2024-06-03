@@ -1,4 +1,12 @@
-export default class GenericFuntions {
+export default class GenericFunctions {
+
+    constructor() {
+        if (GenericFunctions.instance) {
+            return GenericFunctions.instance;
+        }
+
+        GenericFunctions.instance = this;
+    }
 
     get = (element) => {
         return cy.get(element)
@@ -51,3 +59,6 @@ export default class GenericFuntions {
     }
 
 }
+
+const genericFunctionsInstance = new GenericFunctions();
+Object.freeze(genericFunctionsInstance);

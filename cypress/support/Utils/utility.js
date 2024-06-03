@@ -1,5 +1,13 @@
 export default class Utility {
 
+    constructor() {
+        if (Utility.instance) {
+            return Utility.instance;
+        }
+
+        Utility.instance = this;
+    }
+
     generateRandomWord = (length) => {
         const characters = 'abcdefghijklmnopqrstuvwxyz';
         let word = '';
@@ -31,3 +39,5 @@ export default class Utility {
     
 }
 
+const utilityInstance = new Utility();
+Object.freeze(utilityInstance);

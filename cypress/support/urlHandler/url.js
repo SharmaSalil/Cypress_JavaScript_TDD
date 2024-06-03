@@ -1,23 +1,33 @@
 export default class Url {
 
-    envirounment = 'QA'
+    constructor() {
+        if (Url.instance) {
+            return Url.instance;
+        }
+
+        this.environment = 'QA';
+        Url.instance = this;
+    }
 
     getBaseUrl = () => {
-        if (this.envirounment == 'QA') {
+        if (this.environment == 'QA') {
             return 'https://www.rahulshettyacademy.com'
         }
     }
 
     getLoginUrl = () => {
-        if (this.envirounment == 'QA') {
+        if (this.environment == 'QA') {
             return this.getBaseUrl() + '/client/'
         }
     }
 
     getHomePageUrl = () => {
-        if (this.envirounment == 'QA') {
+        if (this.environment == 'QA') {
             return this.getBaseUrl() + '/client/dashboard/dash'
         }
     }
 
 }
+
+const urlInstance = new Url();
+Object.freeze(urlInstance);

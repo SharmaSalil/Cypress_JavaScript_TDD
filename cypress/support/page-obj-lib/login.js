@@ -11,6 +11,7 @@ export default class Login {
         if (Login.instance) {
             return Login.instance;
         }
+        
         this.genericFunctions = new GenericFunctions();
         this.getUrl = new Url();
         this.readData = new ReadData();
