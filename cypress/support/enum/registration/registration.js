@@ -6,8 +6,7 @@ const registrationErrorMessages = {
     PASSWORD: '*Password is required',
     CONFIRMPASSWORD: 'Confirm Password is required',
     AGECHKBX: '*Please check above checkbox',
-    GLOBALERRMSSG: 'Incorrect email or password',
-    CHOOSEOCCUPATION: 'Choose your occupation'
+    GLOBALERRMSSG: 'Incorrect email or password'
 };
 
 export default registrationErrorMessages;

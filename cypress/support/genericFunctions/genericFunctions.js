@@ -2,14 +2,6 @@ import Utility from '../Utils/Utility'
 
 export default class GenericFunctions {
 
-    constructor() {
-        if (GenericFunctions.instance) return GenericFunctions.instance;
-
-        this.utility = new Utility()
-
-        GenericFunctions.instance = this;
-    }
-
     get = (element) => {
         return cy.get(element)
     }
@@ -41,20 +33,24 @@ export default class GenericFunctions {
         cy.get(element).select(value)
     }
 
-    get_find_returnValueForDRODWN = (element, subelement, text, value) => {
+    get_find_returnArrayOfOption = (element, subelement, text, value) => {
+        const utility = new Utility()
         return cy.get(element).find(subelement).then($elements => {
+            if ($elements.length === 0) cy.wait(1000)
             const options = [...$elements].filter(item => item.text !== text)
-            let randomIndex = this.utility.getRandomNumber(options.length - 1);
+            let randomIndex = utility.getRandomNumber(options.length - 1);
             let selectedOption = cy.wrap(options).eq(randomIndex).invoke("attr", value)
 
             return selectedOption
         });
     }
 
-    get_returnValueForCHKBOX = (element, value) => {
+    get_returnArrayOfOption = (element, value) => {
+        const utility = new Utility()
         return cy.get(element).then($elements => {
+            if ($elements.length === 0) cy.wait(1000)
             const options = [...$elements]
-            let randomIndex = this.utility.getRandomNumber(options.length - 1);
+            let randomIndex = utility.getRandomNumber(options.length - 1);
             let selectedOption = cy.wrap(options).eq(randomIndex).invoke("attr", value)
 
             return selectedOption
@@ -85,6 +81,3 @@ export default class GenericFunctions {
     }
 
 }
-
-const genericFunctionsInstance = new GenericFunctions();
-Object.freeze(genericFunctionsInstance);

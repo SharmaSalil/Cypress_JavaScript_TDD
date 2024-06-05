@@ -10,7 +10,7 @@ import Chai from '../enum/chai/chai';
 export default class PageObjectManager {
 
     constructor() {
-        if (PageObjectManager.instance) return PageObjectManager.instance;
+
 
         this.login = new Login();
         this.genericFunctions = new GenericFunctions()
@@ -21,7 +21,6 @@ export default class PageObjectManager {
         this.registrationErrorMessages = RegistrationErrorMessages
         this.chai = Chai
 
-        PageObjectManager.instance = this;
     }
 
     getLogin = () => this.login;
@@ -33,6 +32,3 @@ export default class PageObjectManager {
     getRegistrationErrorMessages = () => this.registrationErrorMessages;
     getChai = () => this.chai;
 }
-
-const pageObjectManagerInstance = new PageObjectManager();
-Object.freeze(pageObjectManagerInstance);

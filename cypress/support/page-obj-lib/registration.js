@@ -3,23 +3,10 @@ import FixturePath from '../fixtureReader/FixturePath'
 import WriteData from '../fixtureReader/WriteData'
 import ReadData from '../fixtureReader/ReadData'
 import GenericFunctions from '../genericFunctions/GenericFunctions'
-import RegistrationErrorMessages from '../enum/registration/registration';
 import Login from '../page-obj-lib/Login'
 
 export default class Registration {
 
-    constructor() {
-        if (Registration.instance) return Registration.instance;
-
-        this.utility = new Utility();
-        this.fixturePath = new FixturePath();
-        this.writeData = new WriteData();
-        this.readData = new ReadData();
-        this.genericFunctions = new GenericFunctions();
-        this.login = new Login()
-
-        Registration.instance = this;
-    }
 
     get firstName_TXTFLD() { return { locator: "#firstName" } }
     get lastName_TXTFLD() { return { locator: "#lastName" } }
@@ -36,6 +23,8 @@ export default class Registration {
     get ageValidationMessage_CHKBX() { return { locator: ".row > [style*='margin-top:'] > div" } }
 
     createDataForRegistration = () => {
+        const fixturePath = new FixturePath();
+        const writeData = new WriteData();
         this.occupation_DRPDWN_selectValue().then(occupationValue => {
             this.gender_RDOBTN_selectValue().then(genderValue => {
                 let firstName = this.createName(5)
@@ -44,16 +33,18 @@ export default class Registration {
                 let phoneNumber = this.createMobileNumber(10)
                 let occupation = occupationValue
                 let gender = genderValue
-                let password = this.createPassword(8)
+                let password = this.createPassword()
                 let confirmPassword = password
-                this.writeData.writeData(this.fixturePath.registrationData.path, { firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, occupation: occupation, gender: gender, password: password, confirmPassword: confirmPassword })
+                writeData.writeData(fixturePath.registrationData.path, { firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, occupation: occupation, gender: gender, password: password, confirmPassword: confirmPassword })
             })
         })
 
     }
 
     fillDataForRegistration = () => {
-        this.readData.readDataUsingReadFile(this.fixturePath.registrationData.path).then(data => {
+        const fixturePath = new FixturePath();
+        const readData = new ReadData()
+        readData.readDataUsingReadFile(fixturePath.registrationData.path).then(data => {
             this.firstName_TXTFLD_type(data.firstName)
             this.lastName_TXTFLD_type(data.lastName)
             this.email_TXTFLD_type(data.email)
@@ -68,137 +59,158 @@ export default class Registration {
     }
 
     occupation_DRPDWN_selectValue() {
-        return this.genericFunctions.get_find_returnValueForDRODWN(this.occupation_DRPDWN.locator, this.occupation_DRPDWN.subElement, RegistrationErrorMessages.CHOOSEOCCUPATION, this.occupation_DRPDWN.attribute)
+        const genericFunctions = new GenericFunctions();
+        return genericFunctions.get_find_returnArrayOfOption(this.occupation_DRPDWN.locator, this.occupation_DRPDWN.subElement, "Choose your occupation", "value")
     }
 
     gender_RDOBTN_selectValue() {
-        return this.genericFunctions.get_returnValueForCHKBOX(this.gender_RDOBTN.locator, this.gender_RDOBTN.attribute)
+        const genericFunctions = new GenericFunctions();
+        return genericFunctions.get_returnArrayOfOption(this.gender_RDOBTN.locator, "value")
     }
 
     createName(length) {
-        let name
-        name = this.utility.generateRandomWord(1).toString().toUpperCase() 
-        name += this.utility.generateRandomWord(length - 1).toString()
+        const utility = new Utility();
+        let name = utility.generateRandomWord(1).toString().toUpperCase() + utility.generateRandomWord(length - 1).toString()
         return name
     }
 
     createEmail(length) {
-        let email
-        email = this.utility.generateRandomWord(length).toString()
-        email += this.utility.createTimestamp().toString()
-        email += "@yopmail.com"
+        const utility = new Utility();
+        let email = utility.generateRandomWord(length).toString() + utility.createTimestamp().toString() + "@yopmail.com"
         return email
     }
 
     createMobileNumber(length) {
-        let number = this.utility.generateNumber(length).toString()
+        const utility = new Utility();
+        let number = utility.generateNumber(length).toString()
         return number
     }
 
-    createPassword(length) {
+    createPassword() {
+        const utility = new Utility();
         let password
-        password = this.utility.generateNumber(length).toString()
-        password += this.utility.generateRandomWord(1).toString().toUpperCase()
-        password += this.utility.generateRandomWord(1).toString()
-        password += this.utility.generateRandomSplCharacter(1)
+        password = utility.generateNumber(8).toString()
+        password = password + utility.generateRandomWord(1).toString().toUpperCase()
+        password = password + utility.generateRandomWord(1).toString()
+        password = password + utility.generateRandomSplCharacter(1)
         return password
     }
 
     firstName_TXTFLD_clear = () => {
-        this.genericFunctions.get_clear(this.firstName_TXTFLD.locator)
+        const genericFunctions = new GenericFunctions();
+        genericFunctions.get_clear(this.firstName_TXTFLD.locator)
     }
 
     firstName_TXTFLD_type = (value) => {
+        const genericFunctions = new GenericFunctions();
         this.firstName_TXTFLD_clear()
-        this.genericFunctions.get_type(this.firstName_TXTFLD.locator, value)
+        genericFunctions.get_type(this.firstName_TXTFLD.locator, value)
     }
 
     lastName_TXTFLD_clear = () => {
-        this.genericFunctions.get_clear(this.lastName_TXTFLD.locator)
+        const genericFunctions = new GenericFunctions();
+        genericFunctions.get_clear(this.lastName_TXTFLD.locator)
     }
 
     lastName_TXTFLD_type = (value) => {
+        const genericFunctions = new GenericFunctions();
         this.lastName_TXTFLD_clear()
-        this.genericFunctions.get_type(this.lastName_TXTFLD.locator, value)
+        genericFunctions.get_type(this.lastName_TXTFLD.locator, value)
     }
 
     email_TXTFLD_clear = () => {
-        this.genericFunctions.get_clear(this.email_TXTFLD.locator)
+        const genericFunctions = new GenericFunctions();
+        genericFunctions.get_clear(this.email_TXTFLD.locator)
     }
 
     email_TXTFLD_type = (value) => {
+        const genericFunctions = new GenericFunctions();
         this.email_TXTFLD_clear()
-        this.genericFunctions.get_type(this.email_TXTFLD.locator, value)
+        genericFunctions.get_type(this.email_TXTFLD.locator, value)
     }
 
     mobileNumber_TXTFLD_clear = () => {
-        this.genericFunctions.get_clear(this.mobileNumber_TXTFLD.locator)
+        const genericFunctions = new GenericFunctions();
+        genericFunctions.get_clear(this.mobileNumber_TXTFLD.locator)
     }
 
     mobileNumber_TXTFLD_type = (value) => {
+        const genericFunctions = new GenericFunctions();
         this.mobileNumber_TXTFLD_clear()
-        this.genericFunctions.get_type(this.mobileNumber_TXTFLD.locator, value)
+        genericFunctions.get_type(this.mobileNumber_TXTFLD.locator, value)
     }
 
     password_TXTFLD_clear = () => {
-        this.genericFunctions.get_clear(this.password_TXTFLD.locator)
+        const genericFunctions = new GenericFunctions();
+        genericFunctions.get_clear(this.password_TXTFLD.locator)
     }
 
     password_TXTFLD_type = (value) => {
+        const genericFunctions = new GenericFunctions();
         this.password_TXTFLD_clear()
-        this.genericFunctions.get_type(this.password_TXTFLD.locator, value)
+        genericFunctions.get_type(this.password_TXTFLD.locator, value)
     }
 
     confirmPassword_TXTFLD_clear = () => {
-        this.genericFunctions.get_clear(this.confirmPassword_TXTFLD.locator)
+        const genericFunctions = new GenericFunctions();
+        genericFunctions.get_clear(this.confirmPassword_TXTFLD.locator)
     }
 
     confirmPassword_TXTFLD_type = (value) => {
+        const genericFunctions = new GenericFunctions();
         this.confirmPassword_TXTFLD_clear()
-        this.genericFunctions.get_type(this.confirmPassword_TXTFLD.locator, value)
+        genericFunctions.get_type(this.confirmPassword_TXTFLD.locator, value)
     }
 
     age_CHKBX_click = () => {
-        this.genericFunctions.get_click(this.age_CHKBX.locator)
+        const genericFunctions = new GenericFunctions();
+        genericFunctions.get_click(this.age_CHKBX.locator)
     }
 
     register_BTN_click = () => {
-        this.genericFunctions.get_click(this.register_BTN.locator)
+        const genericFunctions = new GenericFunctions();
+        genericFunctions.get_click(this.register_BTN.locator)
     }
 
     occupation_DRPDWN_clickWithValue = (value) => {
-        this.genericFunctions.get_select(this.occupation_DRPDWN.locator, value)
+        const genericFunctions = new GenericFunctions();
+        genericFunctions.get_select(this.occupation_DRPDWN.locator, value)
     }
 
     gender_RDOBTN_matchAndClick = (value) => {
-        this.genericFunctions.get_attributeMatch_click(this.gender_RDOBTN.locator, this.gender_RDOBTN.attribute, value)
+        const genericFunctions = new GenericFunctions();
+        genericFunctions.get_attributeMatch_click(this.gender_RDOBTN.locator, this.gender_RDOBTN.attribute, value)
     }
 
     login_BTN_click = () => {
-        this.genericFunctions.get_click(this.login_BTN.loator)
+        const genericFunctions = new GenericFunctions();
+        genericFunctions.get_click(this.login_BTN.loator)
     }
 
     login_BTN_getElement = () => {
-        return this.genericFunctions.get(this.login_BTN.loator)
+        const genericFunctions = new GenericFunctions();
+        return genericFunctions.get(this.login_BTN.loator)
     }
 
     errorMessage_TXT_getText = () => {
-        return this.genericFunctions.get_invoke(this.errorMessage_TXT.locator, "text")
+        const genericFunctions = new GenericFunctions();
+        return genericFunctions.get_invoke(this.errorMessage_TXT.locator, "text")
     }
 
     errorMessage_TXT_get_shouldWithVisibleAndExist = () => {
-        this.genericFunctions.get_shouldWithVisibleAndExist(this.errorMessage_TXT.locator)
+        const genericFunctions = new GenericFunctions();
+        genericFunctions.get_shouldWithVisibleAndExist(this.errorMessage_TXT.locator)
     }
 
     ageValidationMessage_CHKBX_get_invoke = () => {
-        return this.genericFunctions.get_invoke(this.ageValidationMessage_CHKBX.locator, "text")
+        const genericFunctions = new GenericFunctions();
+        return genericFunctions.get_invoke(this.ageValidationMessage_CHKBX.locator, "text")
     }
 
     goToRegisterationPage = () => {
-        this.login.goToLoginPage()
-        this.login.register_BTN_click()
+        const login = new Login()
+        login.goToLoginPage()
+        login.register_BTN_click()
     }
 }
 
-const registrationInstance = new Registration();
-Object.freeze(registrationInstance);
