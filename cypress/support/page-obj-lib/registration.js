@@ -82,17 +82,16 @@ export default class Registration {
 
     createMobileNumber(length) {
         const utility = new Utility();
-        let number = utility.generateNumber(length).toString()
-        return number
+        return utility.generateNumber(length).toString()
     }
 
     createPassword() {
         const utility = new Utility();
         let password
         password = utility.generateNumber(8).toString()
-        password = password + utility.generateRandomWord(1).toString().toUpperCase()
-        password = password + utility.generateRandomWord(1).toString()
-        password = password + utility.generateRandomSplCharacter(1)
+        password += utility.generateRandomWord(1).toString().toUpperCase()
+        password += utility.generateRandomWord(1).toString()
+        password += utility.generateRandomSplCharacter(1)
         return password
     }
 
