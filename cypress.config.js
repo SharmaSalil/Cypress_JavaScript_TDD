@@ -33,6 +33,9 @@ module.exports = defineConfig({
   },
   viewportHeight:768,
   viewportWidth:1024,
+  env:{
+    ENV:"qa"
+  },
   retries: {
     runMode: 2,
     openMode: 1
